@@ -1,18 +1,40 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+{% extends 'partials/base.html' %}
+{% block title %}
 
-    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
-</head>
-<body>
+{% endblock %}
 
-    <h1>Hello World</h1>
+{% block content %}
 
-</body>
-</html>
+    <div class="container-fluid mt-5">
+        <div class="card bg-light mb-3">
+          <div class="card-header text-lg-center h1">All Books</div>
+          <div class="card-body">
+              <table class="table table-hover">
+                  <thead>
+                    <tr class="table-info">
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Published Date</th>
+                        <th>Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for book in books %}
+                        <tr class="table-secondary">
+                            <td>{{ book.bookID }}</td>
+                            <td>{{ book.bookName }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.category }}</td>
+                            <td>{{ book.publishedDate }}</td>
+                            <td>{{ book.quantity }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

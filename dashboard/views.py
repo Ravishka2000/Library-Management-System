@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
+from .models import Book
 
 
 def index(request):
-    return render(request, 'dashboard/index.html')
+    books = Book.objects.all()
+    context = {
+        "books": books,
+    }
+    return render(request, 'dashboard/index.html', context)

@@ -9,7 +9,7 @@
         <div class="card bg-light mb-3">
           <div class="card-header text-lg-center h1">All Books</div>
           <div class="card-body">
-              <table class="table table-hover">
+              <table class="table table-hover text-center">
                   <thead>
                     <tr class="table-info">
                         <th>Book ID</th>
@@ -18,6 +18,7 @@
                         <th>Category</th>
                         <th>Published Date</th>
                         <th>Quantity</th>
+                        <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -29,6 +30,11 @@
                             <td>{{ book.category }}</td>
                             <td>{{ book.publishedDate }}</td>
                             <td>{{ book.quantity }}</td>
+                            <td>
+                                <a href="" class="btn btn-info">View</a>
+                                <a href="" class="btn btn-success">Update</a>
+                                <a href="" class="btn btn-danger">Delete</a>
+                            </td>
                         </tr>
                     {% endfor %}
                   </tbody>

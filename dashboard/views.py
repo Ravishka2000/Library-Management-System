@@ -41,3 +41,11 @@ def updatebook(request, pk):
         "button": "Update",
     }
     return render(request, 'dashboard/addbook.html', context)
+
+
+def deletebook(request, pk):
+    if request.method == 'POST':
+        book = Book.objects.get(id=pk)
+        book.delete()
+        return redirect('dashboard-index')
+    return render(request, 'dashboard/bookdelete.html')

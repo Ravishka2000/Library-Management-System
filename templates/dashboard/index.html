@@ -33,7 +33,7 @@
                             <td>
                                 <a href="" class="btn btn-info">View</a>
                                 <a href="{% url 'book-update' book.id %}" class="btn btn-success">Update</a>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'book-delete' book.id %}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}

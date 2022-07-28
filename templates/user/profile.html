@@ -13,20 +13,20 @@
      <!--Table-->
     <div class="container">
         <div class="row my-4">
-            <div class="col-md-4">
+            <div class="col-md-2">
             </div>
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-info text-white">
-                        Profile Page
-                    </div>
-                    <div class="card-body">
+                    <div class="card-body  bg-light">
                         <div class="row">
                             <div class="col-md-8">
-                                <span class="h4"> Profile Information</span> <a class="btn btn-info btn-sm float-right"
-                                    href="{% url 'user-profile-update' %}">Edit</a>
-                                <hr>
-                                <table class="table bg-white table-borderless">
+                                <div class="h4"> Profile Information
+                                    <a class="btn btn-warning pr-4 pl-4 pt-2 pb-2"
+                                        href="{% url 'user-profile-update' %}">Edit
+                                    </a>
+                                </div>
+                                <hr class="bg-black">
+                                <table class="table bg-body table-borderless">
                                     <tbody>
                                         <tr>
                                             <th scope="row">Name</th>

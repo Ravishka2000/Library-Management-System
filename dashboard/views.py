@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Book
 from .forms import BookForm
 
+
+@login_required
 def index(request):
     books = Book.objects.all()
     context = {
@@ -10,6 +13,7 @@ def index(request):
     return render(request, 'dashboard/index.html', context)
 
 
+@login_required
 def addbook(request):
     if request.method == 'POST':
         form = BookForm(request.POST)
@@ -26,6 +30,7 @@ def addbook(request):
     return render(request, 'dashboard/addbook.html', context)
 
 
+@login_required
 def updatebook(request, pk):
     book = Book.objects.get(id=pk)
     if request.method == 'POST':
@@ -43,6 +48,7 @@ def updatebook(request, pk):
     return render(request, 'dashboard/addbook.html', context)
 
 
+@login_required
 def deletebook(request, pk):
     if request.method == 'POST':
         book = Book.objects.get(id=pk)

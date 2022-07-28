@@ -9,19 +9,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a class="nav-link" href="{% url 'dashboard-index' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'book-add' %}">Add</a>
-                    </li>
+                    {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'book-add' %}">Add</a>
+                        </li>
+                    {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Reserved Books</a>
+                        </li>
+
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="{% url 'user-profile' %}">{{ user.username }} Profile
+                        <a class="nav-link text-white" href="{% url 'user-profile' %}">{{ user.username }}
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>

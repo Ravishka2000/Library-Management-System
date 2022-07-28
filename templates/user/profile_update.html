@@ -9,37 +9,20 @@
 {% endblock %}
 
 {% block content %}
+   <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-light p-3">
+                <div class="h4 text-center "> Update Profile</div>
+                <hr class="bg-black">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ user_form|crispy }}
+                    {{ profile_form|crispy }}
 
-     <!--Table-->
-    <div class="container">
-        <div class="row my-4">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-info text-white">
-                        Profile Page
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span class="h4"> Profile Information</span>
-                                <hr>
-
-                                <form method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    {{ user_form|crispy }}
-                                    {{ profile_form|crispy }}
-
-                                    <input type="submit" class="btn btn-info" value="Update">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <input type="submit" class="btn btn-info" value="Update">
+                </form>
             </div>
         </div>
     </div>
-    <!--End Table-->
-
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'partials/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Add Book
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-light p-3">
+                    <h4>Add a Book</h4>
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" class="btn btn-primary pl-4 pr-4" value="Add">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

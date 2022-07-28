@@ -19,6 +19,25 @@ def addbook(request):
     else:
         form = BookForm()
     context = {
+        "heading": "Add Book",
         "form": form,
+        "button": "Add",
+    }
+    return render(request, 'dashboard/addbook.html', context)
+
+
+def updatebook(request, pk):
+    book = Book.objects.get(id=pk)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard-index')
+    else:
+        form = BookForm(instance=book)
+    context = {
+        "heading": "Update Book",
+        "form": form,
+        "button": "Update",
     }
     return render(request, 'dashboard/addbook.html', context)

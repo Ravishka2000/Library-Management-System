@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Book
+from .models import Book, ReserveBook
 from .forms import BookForm
 
 
@@ -64,3 +64,12 @@ def viewbooks(request):
         "books": books,
     }
     return render(request, 'dashboard/allbooks.html', context)
+
+
+@login_required
+def reservebooks(request):
+    books = ReserveBook.objects.all()
+    context = {
+        "books": books,
+    }
+    return render(request, 'dashboard/reservebooks.html', context)

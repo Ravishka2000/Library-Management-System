@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ heading }}
+{% endblock %}
+
+{% block content %}
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Book ID</th>
+          <th scope="col">Book Name</th>
+          <th scope="col">Reserved Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for book in books %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ book.bookID }}</td>
+          <td>{{ book.bookID.bookName }}</td>
+          <td>{{ book.reserveDate }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

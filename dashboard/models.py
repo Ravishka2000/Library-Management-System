@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 CATEGORY = (
@@ -22,3 +23,12 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{self.bookName} {self.category}'
+
+
+class ReserveBook(models.Model):
+    member = models.ForeignKey(User, on_delete=models.CASCADE)
+    bookID = models.ForeignKey(Book, on_delete=models.CASCADE)
+    reserveDate = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.member} {self.bookID.bookName}'

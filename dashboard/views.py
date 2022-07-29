@@ -16,7 +16,7 @@ def index(request):
 @login_required
 def addbook(request):
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('dashboard-index')
@@ -55,3 +55,12 @@ def deletebook(request, pk):
         book.delete()
         return redirect('dashboard-index')
     return render(request, 'dashboard/bookdelete.html')
+
+
+@login_required
+def viewbooks(request):
+    books = Book.objects.all()
+    context = {
+        "books": books,
+    }
+    return render(request, 'dashboard/allbooks.html', context)

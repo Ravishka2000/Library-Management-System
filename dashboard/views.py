@@ -80,10 +80,9 @@ def reservebooks(request):
 def borrowbook(request, pk):
     if request.method == 'POST':
         current_user = request.user
-        membername = current_user.username
         book = Book.objects.get(id=pk)
-        reserve = ReserveBook.objects.create(member=membername, bookID=book.bookID)
+        reserve = ReserveBook.objects.create(member=current_user, book=book)
         reserve.save()
-    return redirect('book-view')
+    return redirect('book-reserve')
 
 

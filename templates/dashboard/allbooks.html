@@ -29,9 +29,9 @@
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <form action="" method="post">
+                                <form action="{% url 'book-borrow' book.id %}" method="post">
                                     {% csrf_token %}
-                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'book-borrow' book.id %}">Reserve</a>
+                                    <input type="submit" class="btn btn-outline-dark mt-auto" value="Reserve">
                                 </form>
                             </div>
                         </div>

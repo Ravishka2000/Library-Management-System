@@ -23,7 +23,7 @@ class Book(models.Model):
     quantity = models.IntegerField(null=True)
 
     def __str__(self):
-        return f'{self.bookName} {self.category}'
+        return f'{self.bookName}'
 
 
 def expire():
@@ -32,9 +32,9 @@ def expire():
 
 class ReserveBook(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
-    bookID = models.ForeignKey(Book, on_delete=models.CASCADE, default=Book.bookID)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     reserveDate = models.DateField(auto_now_add=True)
     expireDate = models.DateField(default=expire)
 
     def __str__(self):
-        return f'{self.member} {self.bookID.bookName}'
+        return f'{self.member}'

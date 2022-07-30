@@ -24,8 +24,8 @@
       {% for book in books %}
         <tr>
           <th scope="row">{{ forloop.counter }}</th>
-          <td>{{ book.bookID }}</td>
-          <td>{{ book.bookID.bookName }}</td>
+          <td>{{ book.book.bookID }}</td>
+          <td>{{ book.book.bookName }}</td>
           <td>{{ book.reserveDate }}</td>
           <td>{{ book.expireDate }}</td>
           <td><a href="" class="btn btn-success">Return</a></td>

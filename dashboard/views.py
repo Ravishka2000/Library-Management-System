@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import Book, ReserveBook
-from .forms import BookForm
+from .forms import BookForm, BookBorrow
 
 
 @login_required
@@ -73,3 +74,16 @@ def reservebooks(request):
         "books": books,
     }
     return render(request, 'dashboard/reservebooks.html', context)
+
+
+@login_required
+def borrowbook(request, pk):
+    if request.method == 'POST':
+        current_user = request.user
+        membername = current_user.username
+        book = Book.objects.get(id=pk)
+        reserve = ReserveBook.objects.create(member=membername, bookID=book.bookID)
+        reserve.save()
+    return redirect('book-view')
+
+

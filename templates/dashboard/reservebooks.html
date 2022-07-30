@@ -8,13 +8,16 @@
 
 {% block content %}
 
-    <table class="table table-striped">
+    <div class="container">
+    <table class="table table-striped my-5">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Book ID</th>
-          <th scope="col">Book Name</th>
-          <th scope="col">Reserved Date</th>
+          <th>#</th>
+          <th>Book ID</th>
+          <th>Book Name</th>
+          <th>Reserved Date</th>
+          <th>Expire Date</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -24,9 +27,12 @@
           <td>{{ book.bookID }}</td>
           <td>{{ book.bookID.bookName }}</td>
           <td>{{ book.reserveDate }}</td>
+          <td>{{ book.expireDate }}</td>
+          <td><a href="" class="btn btn-success">Return</a></td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
+    </div>
 
 {% endblock %}

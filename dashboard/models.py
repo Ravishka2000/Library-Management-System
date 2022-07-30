@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 
 
 CATEGORY = (
@@ -25,10 +26,15 @@ class Book(models.Model):
         return f'{self.bookName} {self.category}'
 
 
+def expire():
+    return datetime.today() + timedelta(days=14)
+
+
 class ReserveBook(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
-    bookID = models.ForeignKey(Book, on_delete=models.CASCADE)
+    bookID = models.ForeignKey(Book, on_delete=models.CASCADE, default=Book.bookID)
     reserveDate = models.DateField(auto_now_add=True)
+    expireDate = models.DateField(default=expire)
 
     def __str__(self):
         return f'{self.member} {self.bookID.bookName}'

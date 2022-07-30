@@ -32,7 +32,7 @@ def expire():
 
 class ReserveBook(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, unique=True)
     reserveDate = models.DateField(auto_now_add=True)
     expireDate = models.DateField(default=expire)
 

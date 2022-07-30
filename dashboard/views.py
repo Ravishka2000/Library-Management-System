@@ -35,7 +35,7 @@ def addbook(request):
 def updatebook(request, pk):
     book = Book.objects.get(id=pk)
     if request.method == 'POST':
-        form = BookForm(request.POST, instance=book)
+        form = BookForm(request.POST,request.FILES, instance=book)
         if form.is_valid():
             form.save()
             return redirect('dashboard-index')

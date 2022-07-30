@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from .models import Book, ReserveBook
-from .forms import BookForm, BookBorrow
+from .forms import BookForm
 
 
 @login_required
@@ -64,6 +63,22 @@ def viewbooks(request):
     context = {
         "books": books,
     }
+    if request.method == 'POST':
+        if 'Thriller' in request.POST:
+            queryset = books.filter(category='Thriller')
+            context = {
+                "books": queryset,
+            }
+        elif 'Sci-fy' in request.POST:
+            queryset = books.filter(category='Sci-fy')
+            context = {
+                "books": queryset,
+            }
+        elif 'Crime' in request.POST:
+            queryset = books.filter(category='Crime')
+            context = {
+                "books": queryset,
+            }
     return render(request, 'dashboard/allbooks.html', context)
 
 

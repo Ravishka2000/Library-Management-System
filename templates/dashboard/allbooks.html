@@ -11,18 +11,22 @@
     <div class="border-end bg-dark" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom border-top bg-dark p-4 text-white">Filter Books</div>
         <div class="list-group list-group-flush">
-            {% for book in books %}
-                <a class="list-group-item list-group-item-action py-3 px-4 bg-dark text-white-50 text-muted t" href="#!">
-                    {{ book.category }}
-                </a>
-            {% endfor %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for book in books %}
+                    <input type="submit"
+                           class="list-group-item list-group-item-action py-3 px-4 bg-dark text-white-50 text-muted"
+                           value="{{ book.category }}"
+                           name="{{ book.category }}">
+                {% endfor %}
+            </form>
         </div>
     </div>
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for book in books %}
-                <div class="col mb-5">
+                <div class="col mb-5" style="min-width: 265px">
                     <div class="card h-100">
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
                             Sale

@@ -34,7 +34,7 @@ def addbook(request):
 def updatebook(request, pk):
     book = Book.objects.get(id=pk)
     if request.method == 'POST':
-        form = BookForm(request.POST,request.FILES, instance=book)
+        form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
             return redirect('dashboard-index')
@@ -131,8 +131,24 @@ def borrowbook(request, pk):
     if request.method == 'POST':
         current_user = request.user
         book = Book.objects.get(id=pk)
-        reserve = ReserveBook.objects.create(member=current_user, book=book)
-        reserve.save()
+        if not ReserveBook.objects.filter(member=current_user, book=book).exists():
+            reserve = ReserveBook.objects.create(member=current_user, book=book)
+            reserve.save()
     return redirect('book-reserve')
 
 
+@login_required
+def returnbook(request, pk):
+    book = ReserveBook.objects.get(id=pk)
+    book.status = True
+    book.save()
+    return redirect('book-reserve')
+
+
+@login_required
+def deletereservebook(request, pk):
+    if request.method == 'POST':
+        book = ReserveBook.objects.get(id=pk)
+        book.delete()
+        return redirect('book-reserve')
+    return render(request, 'dashboard/bookdelete.html')

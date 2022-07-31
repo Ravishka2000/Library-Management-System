@@ -9,32 +9,46 @@
 {% block content %}
 
     <div class="container">
-    <table class="table table-striped my-5">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Book ID</th>
-          <th>Book Name</th>
-          <th>Reserved Date</th>
-          <th>Expire Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for book in books %}
-        <tr>
-          <th scope="row">{{ forloop.counter }}</th>
-          <td>{{ book.book.bookID }}</td>
-          <td>{{ book.book.bookName }}</td>
-          <td>{{ book.reserveDate }}</td>
-          <td>{{ book.expireDate }}</td>
-          <td>
-              <a href="" class="btn btn-success">Return</a>
-          </td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+        <table class="table table-striped my-5 text-center">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Book ID</th>
+              <th>Book Name</th>
+              <th>Reserved Date</th>
+              <th>Expire Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for book in books %}
+              {% if book.member == user %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ book.book.bookID }}</td>
+                  <td>{{ book.book.bookName }}</td>
+                  <td>{{ book.reserveDate }}</td>
+                  <td>{{ book.expireDate }}</td>
+                  <td>
+                    {% if book.status == True %}
+                        Returned <i class="bi bi-check-circle h6"></i>
+                    {% else %}
+                        Not Returned Yet
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if book.status == True %}
+                        <a href="{% url 'book-reserve-delete' book.id %}" class="btn btn-danger">Delete</a>
+                    {% else %}
+                        <a href="{% url 'book-return' book.id %}" class="btn btn-info">Return</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
     </div>
 
 {% endblock %}

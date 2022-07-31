@@ -8,17 +8,21 @@
 
 {% block content %}
 <div class="d-flex">
-    <div class="border-end bg-dark" id="sidebar-wrapper">
+    <div class="border-end bg-dark mr-5">
         <div class="sidebar-heading border-bottom border-top bg-dark p-4 text-white">Filter Books</div>
         <div class="list-group list-group-flush">
             <form action="" method="post">
                 {% csrf_token %}
-                {% for book in books %}
+                {% for category in categories %}
                     <input type="submit"
                            class="list-group-item list-group-item-action py-3 px-4 bg-dark text-white-50 text-muted"
-                           value="{{ book.category }}"
-                           name="{{ book.category }}">
+                           value="{{ category }}"
+                           name="{{ category }}">
                 {% endfor %}
+                <a href="{% url 'book-view' %}"
+                       class="list-group-item list-group-item-action py-3 px-4 bg-dark text-white-50 text-muted">
+                    {{ reset }}
+                </a>
             </form>
         </div>
     </div>

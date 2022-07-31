@@ -60,24 +60,59 @@ def deletebook(request, pk):
 @login_required
 def viewbooks(request):
     books = Book.objects.all()
+    categories = Book.objects.values_list('category', flat=True).distinct()
     context = {
         "books": books,
+        "categories": categories,
     }
     if request.method == 'POST':
         if 'Thriller' in request.POST:
             queryset = books.filter(category='Thriller')
+            categories = queryset.values_list('category', flat=True).distinct()
             context = {
                 "books": queryset,
+                "categories": categories,
+                "reset": "Reset",
             }
         elif 'Sci-fy' in request.POST:
             queryset = books.filter(category='Sci-fy')
+            categories = queryset.values_list('category', flat=True).distinct()
             context = {
                 "books": queryset,
+                "categories": categories,
+                "reset": "Reset",
             }
         elif 'Crime' in request.POST:
             queryset = books.filter(category='Crime')
+            categories = queryset.values_list('category', flat=True).distinct()
             context = {
                 "books": queryset,
+                "categories": categories,
+                "reset": "Reset",
+            }
+        elif 'Mystery' in request.POST:
+            queryset = books.filter(category='Mystery')
+            categories = queryset.values_list('category', flat=True).distinct()
+            context = {
+                "books": queryset,
+                "categories": categories,
+                "reset": "Reset",
+            }
+        elif 'Rom-Com' in request.POST:
+            queryset = books.filter(category='Rom-Com')
+            categories = queryset.values_list('category', flat=True).distinct()
+            context = {
+                "books": queryset,
+                "categories": categories,
+                "reset": "Reset",
+            }
+        elif 'Action' in request.POST:
+            queryset = books.filter(category='Action')
+            categories = queryset.values_list('category', flat=True).distinct()
+            context = {
+                "books": queryset,
+                "categories": categories,
+                "reset": "Reset",
             }
     return render(request, 'dashboard/allbooks.html', context)
 

@@ -12,7 +12,7 @@
 
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-5 offset-md-3">
                 {% for message in messages %}
                     {% if message %}
                         <div class="alert alert-{{ message.tags }}">
@@ -27,6 +27,8 @@
                         {% csrf_token %}
 
                         {{ form|crispy }}
+
+                        <br>
 
                         <input type="submit" class="btn btn-success" value="Login">
                         <br><br>

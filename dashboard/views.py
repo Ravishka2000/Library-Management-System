@@ -152,3 +152,11 @@ def deletereservebook(request, pk):
         book.delete()
         return redirect('book-reserve')
     return render(request, 'dashboard/bookdelete.html')
+
+
+def bookdetails(request, pk):
+    book = Book.objects.get(id=pk)
+    context = {
+        "book": book,
+    }
+    return render(request, 'dashboard/bookdetails.html', context)

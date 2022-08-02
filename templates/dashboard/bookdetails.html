@@ -1,0 +1,45 @@
+{% extends 'partials/base.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-4">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-3">
+                    <img class="card-img-top mb-5 mb-md-0" src="{{ book.image.url }}" alt="..." />
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder">{{ book.bookName }}</h1>
+                    <div class="mb-5 mt-5">
+                        <div class="h4">
+                            <dl class="row">
+                                <dt class="col-sm-6">Author</dt>
+                                <dd class="col-sm-6">{{ book.author }}</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-6">Book ID</dt>
+                                <dd class="col-sm-6">{{ book.bookID }}</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-6">Category</dt>
+                                <dd class="col-sm-6">{{ book.category }}</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-6">Published Date</dt>
+                                <dd class="col-sm-6">{{ book.publishedDate }}</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-6">In Stock</dt>
+                                <dd class="col-sm-6">{{ book.quantity }}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

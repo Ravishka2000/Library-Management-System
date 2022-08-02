@@ -160,3 +160,7 @@ def bookdetails(request, pk):
         "book": book,
     }
     return render(request, 'dashboard/bookdetails.html', context)
+
+
+def aboutus(request):
+    return render(request, 'dashboard/aboutus.html')
